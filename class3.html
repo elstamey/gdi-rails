@@ -1,238 +1,270 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
-  <head>
-    <meta charset="utf-8">
+	<head>
+		<meta charset="utf-8">
 
-    <title>Intro to Rails</title>
+		<title>Intro to Rails</title>
 
-    <meta name="description" content="This is an Intro to Rails course, intended for eventual inclusion in the Girl Develop It Core Curriculum. All material by Cheri Allen, inspired by Railsbridge.
+		<meta name="description" content="This is an Intro to Rails course, intended for use as Girl Develop It Core Curriculum. All material inspired by Railsbridge. Theme built on a forked from Hakim El Hattab's reveal.js">
+		<meta name="author" content="Girl Develop It">
 
-    The course is meant to be taught in four two-hour workshops. Each of the slides and practice files are customizable according to the needs of a given class or audience.">
-    <meta name="author" content="Girl Develop It">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/simple.css" id="theme">
 
-     <link rel="stylesheet" href="reveal.js/css/reveal.css">
-    <link rel="stylesheet" href="reveal.js/css/theme/gdicool.css" id="theme">
-    <link rel="stylesheet" href="overwrite.css">
+		<!-- For syntax highlighting -->
+		<!-- light editor<link rel="stylesheet" href="lib/css/light.css">-->
+		<!-- dark editor--><link rel="stylesheet" href="lib/css/dark.css">
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+		
+		<link rel="stylesheet" href="plugin/accessibility-helper/css/accessibility-helper.css">
 
-    <!-- For syntax highlighting -->
-    <!-- light editor<link rel="stylesheet" href="lib/css/light.css">-->
-    <!-- dark editor--><link rel="stylesheet" href="reveal.js/lib/css/dark.css">
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
 
-    <!-- If use the PDF print sheet so students can print slides-->
+		<!-- If use the PDF print sheet so students can print slides-->
+		
+		<link rel="stylesheet" href="css/print/pdf.css" type="text/css" media="print">
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
 
-    <link rel="stylesheet" href="reveal.js/css/print/pdf.css" type="text/css" media="print">
+	<body>
 
-    <!--[if lt IE 9]>
-    <script src="lib/js/html5shiv.js"></script>
-    <![endif]-->
-  </head>
+		<div class="reveal">
 
-  <body>
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+        <!-- Opening -->
+				<section>
+					<h1>Intro to Rails</h1>
+					<img src="img/circle-gdi-logo.png" alt="GDI Logo"/>
+					<p>
+						<small>Found at <a href ="https://github.com/girldevelopit/intro-to-rails">Girl Develop It Intro to Rails fork</a>.</small>
+					</p>
+					<p>
+						<small>Reveal.js Created by <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small>
+					</p>
+				</section>
+				<!-- Intro -->
+				<section>
+					<h3>What we will cover today</h3>
+					<ul>
+						<li>Homework Review</li>
+						<li>Controllers</li>
+						<li>Routes</li>
+						<li>Views</li>
+					</ul>
+					<p>We will talk about Ratings, but focus on code for Artists and Songs only.</p>
+				</section>
 
-    <div class="reveal">
+				<section>
+					<h3>Homework Review</h3>
+					<h5>Rails Console</h5>
+					<p>Did everyone create lots of objects?</p>
+				</section>
 
-      <!-- Any section element inside of this container is displayed as a slide -->
-      <div class="slides">
-        <!-- Opening slide -->
-        <section>
-          <img src = "images/gdi_logo_badge.png">
-          <h3>Intro to Rails</h3>
-          <p>slides: http://cherimarie.github.io/gdi-rails</p>
-        </section>
+				<section>
+					<h3>Controllers & Views</h3>
+					<p>Action View and Action Controller are the two major components of Action Pack. In Rails, web requests are
+						handled by Action Pack, which splits the work into a controller part (performing the logic) and a view
+						part (rendering a template). Typically, Action Controller will be concerned with communicating with the
+						database and performing CRUD actions where necessary. Action View is then responsible for compiling the
+						response.</p>
+				</section>
 
-  <!-- Intro -->
-        <section>
-          <h3>What we will cover today</h3>
-          <ul>
-            <li>Homework Review</li>
-            <li>Controllers</li>
-            <li>Routes</li>
-            <li>Views</li>
-          </ul>
-          <p>We will talk about Ratings, but focus on code for Artists and Songs only.</p>
-        </section>
+				<!-- Controllers -->
+				<section>
+					<h3>What is a controller?</h3>
+					<p>After routing has determined which controller to use for a request, your controller is responsible for
+						making sense of the request and producing the appropriate output (action and view).</p>
+					<p><a href="http://guides.rubyonrails.org/action_controller_overview.html" alt="rails guides controllers">More
+						info...</a></p>
+				</section>
 
-        <section>
-          <h3>Homework Review</h3>
-          <h5>Rails Console</h5>
-          <p>Did everyone create lots of objects?</p>
-        </section>
+				<section>
+					<h3>Pop Weasel Controllers</h3>
+					<br>
+					<table>
+						<tr>
+							<th style="border-bottom: 2px solid skyblue;">Controller</th>
+							<th colspan="3" style="border-bottom: 2px solid skyblue;">Actions</th>
+						</tr>
+						<tr>
+							<td>Artists</td>
+							<td>Index</td>
+							<td>Show</td>
+						</tr>
+						<tr>
+							<td>Songs</td>
+							<td>New</td>
+							<td>Create</td>
+							<td>Show</td>
+						</tr>
+						<tr>
+							<td>Ratings</td>
+							<td>New</td>
+							<td>Create</td>
+						</tr>
+					</table>
+				</section>
 
-        <section>
-          <h3>Controllers & Views</h3>
-          <p>Action View and Action Controller are the two major components of Action Pack. In Rails, web requests are handled by Action Pack, which splits the work into a controller part (performing the logic) and a view part (rendering a template). Typically, Action Controller will be concerned with communicating with the database and performing CRUD actions where necessary. Action View is then responsible for compiling the response.</p>
-        </section>
-
-  <!-- Controllers -->
-        <section>
-          <h3>What is a controller?</h3>
-          <p>After routing has determined which controller to use for a request, your controller is responsible for making sense of the request and producing the appropriate output (action and view).</p>
-          <p><a href="http://guides.rubyonrails.org/action_controller_overview.html" alt="rails guides controllers">More info...</a></p>
-        </section>
-
-        <section>
-          <h3>Pop Weasel Controllers</h3>
-          <br>
-          <table>
-            <tr>
-                <th style="border-bottom: 2px solid skyblue;">Controller</th>
-                <th colspan="3" style="border-bottom: 2px solid skyblue;">Actions</th>
-            </tr>
-            <tr>
-                <td>Artists</td>
-                <td>Index</td>
-                <td>Show</td>
-            </tr>
-            <tr>
-                <td>Songs</td>
-                <td>New</td>
-                <td>Create</td>
-                <td>Show</td>
-            </tr>
-            <tr>
-                <td>Ratings</td>
-                <td>New</td>
-                <td>Create</td>
-            </tr>
-          </table>
-        </section>
-
-        <section>
-          <h3>Building Controllers</h3>
-          <p>Let's work together to build the Artists, Songs, and Ratings controllers. Start with running the generate commands in the terminal: </p>
+				<section>
+					<h3>Building Controllers</h3>
+					<p>Let's work together to build the Artists, Songs, and Ratings controllers. Start with running the generate
+						commands in the terminal: </p>
           <pre><code>
-$ rails generate controller Artists
-$ rails generate controller Songs
-$ rails generate controller Ratings
-          </code></pre>
-        </section>
-<!-- Instructor leads class in building Artists, Songs, & Ratings controllers, with the actions listed in the previous section defined but with no content. -->
+			  $ rails generate controller Artists
+			  $ rails generate controller Songs
+			  $ rails generate controller Ratings
+		  </code></pre>
+				</section>
+				<!-- Instructor leads class in building Artists, Songs, & Ratings controllers, with the actions listed in the previous section defined but with no content. -->
 
 
-  <!-- Routing -->
-        <section>
-          <h3>Routing</h3>
-          <p>The Rails router recognizes URLs and dispatches them to a controller's action. It can also generate paths and URLs, avoiding the need to hardcode strings in your views.</p>
-          <p>Since ratings belong to songs, and songs belong to artists, we need nested routes.</p>
-          <p><a href="http://guides.rubyonrails.org/routing.html" alt="rails guides routing">More info...</a></p>
-        </section>
+				<!-- Routing -->
+				<section>
+					<h3>Routing</h3>
+					<p>The Rails router recognizes URLs and dispatches them to a controller's action. It can also generate paths
+						and URLs, avoiding the need to hardcode strings in your views.</p>
+					<p>Since ratings belong to songs, and songs belong to artists, we need nested routes.</p>
+					<p><a href="http://guides.rubyonrails.org/routing.html" alt="rails guides routing">More info...</a></p>
+				</section>
 
-<!-- Views -->
-        <section>
-          <h3>What is a View</h3>
-          <p>Action View templates are written using embedded Ruby in tags mingled with HTML. To avoid cluttering the templates with boilerplate code, a number of helper classes provide common behavior for forms, dates, and strings. It's also easy to add new helpers to your application as it evolves.</p>
-          <ul>
-            <li>Layouts</li>
-            <li>Templates</li>
-            <li>Partials</li>
-          </ul>
-          <p><a href="http://guides.rubyonrails.org/layouts_and_rendering.html" alt="rails guides views">More info...</a></p>
-        </section>
+				<!-- Views -->
+				<section>
+					<h3>What is a View</h3>
+					<p>Action View templates are written using embedded Ruby in tags mingled with HTML. To avoid cluttering the
+						templates with boilerplate code, a number of helper classes provide common behavior for forms, dates,
+						and strings. It's also easy to add new helpers to your application as it evolves.</p>
+					<ul>
+						<li>Layouts</li>
+						<li>Templates</li>
+						<li>Partials</li>
+					</ul>
+					<p><a href="http://guides.rubyonrails.org/layouts_and_rendering.html" alt="rails guides views">More
+						info...</a></p>
+				</section>
 
-        <section>
-          <h3>Pop Weasel Views</h3>
-          <ul>
-            <li style="border-bottom: 2px solid skyblue;">Model/View</li>
-            <li>Layouts/Application</li>
-            <li>Artist/Index (root)</li>
-            <li>Artist/Show</li>
-            <li>Song/Show</li>
-            <li>Song/New</li>
-            <li>Song/_form</li>
-            <li>Rating/New</li>
-            <li>Rating/_form</li>
-          </ul>
-        </section>
+				<section>
+					<h3>Pop Weasel Views</h3>
+					<ul>
+						<li style="border-bottom: 2px solid skyblue;">Model/View</li>
+						<li>Layouts/Application</li>
+						<li>Artist/Index (root)</li>
+						<li>Artist/Show</li>
+						<li>Song/Show</li>
+						<li>Song/New</li>
+						<li>Song/_form</li>
+						<li>Rating/New</li>
+						<li>Rating/_form</li>
+					</ul>
+				</section>
 
-        <section>
-          <h3>Building Views</h3>
-          <p>Let's work together to build the Artist Index and Show views.</p>
-        </section>
+				<section>
+					<h3>Building Views</h3>
+					<p>Let's work together to build the Artist Index and Show views.</p>
+				</section>
 
-<!-- Instructor leads class in building the views listed in the section above. Time may not permit you to get through all of them. -->
-        <section>
-          <h3>Let's Develop It!</h3>
-          <p>Build your own Song Show view</p>
-        </section>
+				<!-- Instructor leads class in building the views listed in the section above. Time may not permit you to get through all of them. -->
+				<section>
+					<h3>Let's Develop It!</h3>
+					<p>Build your own Song Show view</p>
+				</section>
 
-        <section>
-          <h3>Let's Develop It!</h3>
+				<section>
+					<h3>Let's Develop It!</h3>
           <pre><code class="html">
-&lt;h1><%= @song.title %>&lt;/h1>
+			  &lt;h1><%= @song.title %>&lt;/h1>
 
-<p>From the album: <%= @song.album %>.</p>
-          </code></pre>
-        </section>
+			  <p>From the album: <%= @song.album %>.</p>
+		  </code></pre>
+				</section>
 
-        <section>
-          <h3>Where Does CSS Go?</h3>
-          <p>app/assets/stylesheets</p>
-<!-- brief discussion of assets directory if time permits and class is interested-->
-        </section>
+				<section>
+					<h3>Where Does CSS Go?</h3>
+					<p>app/assets/stylesheets</p>
+					<!-- brief discussion of assets directory if time permits and class is interested-->
+				</section>
 
-        <section>
-          <h3>Summary</h3>
-          <p>Today, we built the controllers and views for our application, including forms to create new songs, as well as all the necessary routing.</p>
+				<section>
+					<h3>Summary</h3>
+					<p>Today, we built the controllers and views for our application, including forms to create new songs, as
+						well as all the necessary routing.</p>
 
-          <p>App code available <a href="https://github.com/cherimarie/pop_weasel" alt="github repo">on Github</a>.</p>
-        </section>
+					<p>App code available <a href="https://github.com/cherimarie/pop_weasel" alt="github repo">on Github</a>.
+					</p>
+				</section>
 
-        <section>
-          <h3>Questions</h3>
-          <p>?</p>
-        </section>
+				<section>
+					<h3>Questions</h3>
+					<p>?</p>
+				</section>
 
-        <section>
-          <h3>Homework</h3>
-          <p>Ensure that you have an account set up on Heroku.com.</p>
-          <p>Read the documentation for the <a href="https://github.com/plataformatec/devise" alt="Devise gem">Devise gem</a>. We'll be using it next week.</p>
-        </section>
+				<section>
+					<h3>Homework</h3>
+					<p>Ensure that you have an account set up on Heroku.com.</p>
+					<p>Read the documentation for the <a href="https://github.com/plataformatec/devise" alt="Devise gem">Devise
+						gem</a>. We'll be using it next week.</p>
+				</section>
 
+				<section>
+					<h1>THE END</h1>
+					<h3>BY Girl Develop It</h3>
+					<h4>Special thanks to: Hakim El Hattab / hakim.se</h4>
+				</section>
 
-
-      </div>
-      <footer>
-        <div class="copyright">
-          Intro to Rails
-          <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/80x15.png" /></a>
-        </div>
+			</div>
+			<footer>
+				<div class="copyright">
+					Girl Develop It -- Seattle (content modified from original) --
+					<a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/80x15.png" /></a>
+				</div>
       </footer>
-    </div>
+		</div>
 
 
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
 
-    <script src="reveal.js/lib/js/head.min.js"></script>
-    <script src="reveal.js/js/reveal.min.js"></script>
+		<script>
 
-    <script>
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
 
-      // Full list of configuration options available here:
-      // https://github.com/hakimel/reveal.js#configuration
-      Reveal.initialize({
-        controls: true,
-        progress: true,
-        history: true,
+				transition: 'none', // none/fade/slide/convex/concave/zoom
 
-        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true },
+                    { src: 'plugin/accessibility-helper/js/accessibility-helper.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
 
-        // Optional libraries used to extend on reveal.js
-        dependencies: [
-          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-          { src: 'reveal.js/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-          { src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-          { src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-          { src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
-        ]
-      });
+		</script>
 
-    </script>
-
-
-  </body>
+	</body>
 </html>
