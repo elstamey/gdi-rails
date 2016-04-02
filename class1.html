@@ -112,8 +112,8 @@
 					<h3>Installation Check</h3>
 					<p>Run these commands in the terminal. You should expect them to return a number, like '4.0' or '2.0.0'.
                 <pre><code class="command-line">
-					$ ruby -v
-					$ rails -v
+	$ ruby -v
+	$ rails -v
 				</code></pre>
 
 					<p><a href="https://www.ruby-lang.org/en/documentation/installation/">Ruby Installation</a></p>
@@ -125,9 +125,9 @@
 					<h3>Make a Rails app!</h3>
 					<p>Navigate to a project directory in your terminal, then run:</p>
           <pre><code class="command-line">
-			  $ rails new TestApp
-			  $ cd TestApp
-			  $ rails server
+	$ rails new TestApp
+	$ cd TestApp
+	$ rails server
 		  </code></pre>
 					<p>Now, visit localhost:3000 in your browser to view your app!</p>
 				</section>
@@ -151,8 +151,8 @@
 					<h4>Add a Student Model</h4>
 					<p>In the terminal, generate the model, then run database migration:</p>
           <pre><code class="command-line">
-			  $ rails generate model student bio:string full_name:string
-			  $ rake db:migrate
+	$ rails generate model student bio:string full_name:string
+	$ rake db:migrate
 		  </code></pre>
 				</section>
 
@@ -179,12 +179,12 @@
 					<h4>Add a Student Record to the Database</h4>
 					<p>In the terminal, enter the rails console:</p>
           <pre><code class="command-line">
-			  $ rails console
+	$ rails console
 		  </code></pre>
 					<p>Then, create a Student object:</p>
           <pre><code class="command-line">
-			  > Student.create(full_name: "Hermione Granger",
-			  bio: "Dedicated student")
+	> Student.create(full_name: "Hermione Granger",
+	bio: "Dedicated student")
 		  </code></pre>
 					<p>Note: close the console by entering the word 'quit'.</p>
 				</section>
@@ -196,18 +196,18 @@
 						<p>
 						<p>CRUD Operations:</p></div>
         <pre><code class="command-line">
-			#Create
-			> Student.create
-			> Student.create(full_name: "Bert", bio: "Bestie of Ernie")
-			#Read
-			> Student.all
-			> Student.first
-			> student = Student.find(1)
-			#Update
-			> student.update_attributes(full_name: "Bert Bernard")
-			> student.update(bio: "Scrabble champ of Sesame Street")
-			#Destroy
-			> student.destroy
+	#Create
+	> Student.create
+	> Student.create(full_name: "Bert", bio: "Bestie of Ernie")
+	#Read
+	> Student.all
+	> Student.first
+	> student = Student.find(1)
+	#Update
+	> student.update_attributes(full_name: "Bert Bernard")
+	> student.update(bio: "Scrabble champ of Sesame Street")
+	#Destroy
+	> student.destroy
 		</code></pre>
 				</section>
 
@@ -216,7 +216,7 @@
 					<h4>Create a Students Controller</h4>
 					<p>In the terminal:</p>
           <pre><code class="command-line">
-			  $ rails generate controller Students
+	$ rails generate controller Students
 		  </code></pre>
 					<p>Generating this controller also creates an app/views/students directory. </p>
 				</section>
